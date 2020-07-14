@@ -66,10 +66,11 @@ A `Field.empty` should always be used inside a `Form.empty`.
 
     initModel : Model
     initModel =
-        { registerForm = Form.empty registerValidators { username = Field.empty usernameValidators ""
-                                                        , email = Field.empty emailValidators  ""
-                                                        , tos = Field.empty tosValidators False
-                                                        }
+        { registerForm = Form.empty registerValidators registerFieldValidation
+                                        { username = Field.empty usernameValidators ""
+                                        , email = Field.empty emailValidators  ""
+                                        , tos = Field.empty tosValidators False
+                                        }
         }
 
 -}
@@ -99,11 +100,12 @@ A `Field.prefilled` should always be used inside a `Form.prefilled`.
 
     initModel : Model
     initModel =
-        { profileForm = Form.prefilled profileValidators { displayName = Field.prefilled displayNameValidators "Dzuk"
-                                                           , bio = Field.prefilled bioValidators "Big gay orc."
-                                                           , botAccount = Field.prefilled PassValidation False
-                                                           , adultAccount = Field.prefilled PassValidation False
-                                                           }
+        { profileForm = Form.prefilled profileValidators profileFieldValidation
+                                       { displayName = Field.prefilled displayNameValidators "Dzuk"
+                                       , bio = Field.prefilled bioValidators "Big gay orc."
+                                       , botAccount = Field.prefilled PassValidation False
+                                       , adultAccount = Field.prefilled PassValidation False
+                                       }
         }
 
 -}

@@ -37,22 +37,19 @@ module Form exposing ( Form
 # Form
 @docs Form
 
-
-
 # Creating Forms
 @docs empty, prefilled
 
-
-
-# Manipulation
+# Manipulating form values
 @docs replaceValues
+
+# Form state
+@docs State, changeState, setDone, setSaving
 
 
 
 # Validation
 @docs validate
-
-
 
 # Field access
 Types and functions for accessing and handling `Field` values within a `Form`.
@@ -74,6 +71,9 @@ Functions for storing user input changes and validating them as they are being i
 ## Functions that don't change values, only metadata
 Useful for event handlers like onBlur.
 @docs showAnyFieldErr
+
+# Submission functions for button event handlers
+@docs submit
 
 
 -}
@@ -132,7 +132,7 @@ that the user hasn't filled in this particular form yet (therefore, it is `Unche
 Because there are many possible representations for empty `Field`s out there,
 you have to enter in what 'empty' means for the value itself.
 
-A `Form.empty` should always be used with `Field.empty`.
+A `Form.empty` should always contain empty Fields.
 
     initModel : Model
     initModel =
@@ -142,6 +142,12 @@ A `Form.empty` should always be used with `Field.empty`.
                                         , tos = Field.empty tosValidators False
                                         }
         }
+
+The arguments:
+- ValidatorSet for the form itself
+- A function that goes through every Field in this Form that needs validating and validates them (currently necessary boilerplate)
+- The nested Fields.
+
 
 -}
 empty : ValidatorSet b -> (b -> b) -> b -> Form b
@@ -163,7 +169,7 @@ empty valis fieldValis val =
 {-| Creates a `Form` that is set up in a state which assumes
 that the user has filled in this data point before, and therefore assumes it's already`Valid`.
 
-Designed for forms that a user is returning to.
+Designed for forms that a user is returning to. It should contain prefilled Fields.
 
 In addition to being `Valid`, the validation behavior is set so that validation errors are set to
 show immediately.
@@ -179,6 +185,12 @@ The state of this form has been set to FormSaved (assuming that this has been sa
                                        , adultAccount = Field.prefilled PassValidation False
                                        }
         }
+
+The arguments:
+- ValidatorSet for the form itself
+- A function that goes through every Field in this Form that needs validating and validates them (currently necessary boilerplate)
+- The nested Fields.
+
 -}
 prefilled : ValidatorSet b -> (b -> b) -> b -> Form b
 prefilled valis fieldValis val =
@@ -206,7 +218,7 @@ prefilled valis fieldValis val =
                                    }
 
     newFormValue = { displayName = Field.prefilled "Someone else"
-               , bio = Field.prefilled "Not as cool as Dzuk."
+               , bio = Field.prefilled "Meh."
                , botAccount = Field.prefilled False
                , adultAccount = Field.prefilled False
                }
