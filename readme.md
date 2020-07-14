@@ -18,7 +18,7 @@ I'm publishing this at the moment in case anyone is interested in this kind of f
 
 ## How to use
 
-Check out [realtime-forms-example](https://github.com/dzuk-mutant/realtime-forms-example) for an example of this code in practice.
+Check out [realtime-forms-test](https://github.com/dzuk-mutant/realtime-forms-test) for an example of this code in practice.
 
 ---
 
