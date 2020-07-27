@@ -84,9 +84,6 @@ import Form.Field as Field exposing (Field)
 import Form.Updatable as Updatable
 import Form.Validatable as Validatable exposing (ErrBehavior(..), ErrVisibility(..), Validity(..), isValid, validate)
 import Form.Validator exposing (ValidatorSet(..))
-import Html exposing (b)
-import Http
-import Json.Decode exposing (field)
 
 
 {-| A type that represents your whole form, including it's validation state.

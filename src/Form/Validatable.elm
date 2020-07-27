@@ -48,7 +48,6 @@ These functions combine validation with error visibility functions.
 
 
 import Form.Validator as Validator exposing (ValidatorSet(..))
-import Svg.Attributes exposing (r)
 
 
 {-| This is the basis for the `Form` and `Field` data types.

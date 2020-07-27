@@ -6,17 +6,23 @@ A work-in-progress system for creating form logic where validation is:
 
 - **Contextual** (errors are displayed where they are needed, usually at the input itself)
 - **Granular** (errors tell the user exactly what error they made)
-- **Realtime** (errors can display as the user is inputting data, not when they try to submit, you can set to trigger realtime validation at different points of a user's interaction so errors aren't shown immediately)
+- **Realtime** (errors can display as the user is inputting data*)
+
+*\*you can set to trigger realtime validation at different points of a user's interaction so errors don't have to be shown immediately to the user.*
+
+---
 
 This module only handles the data structures and validation processes, and then you can then insert those things into your own UI stuff.
 
-I've spent quite a long time trying to refine this quite a lot before publishing, but this package should still be considered an early project. It has plenty of flaws in it's current state, like it relies on quite a lot of boilerplate to function, as well as lens-style getters/setters to accomplish a lot of things.
+I've spent quite a long time working on this and refined it quite a lot, but this package should still be considered an early project. It has plenty of flaws in it's current state (like it relies on quite a lot of boilerplate to function).
 
-I'm publishing this at the moment in case anyone is interested in this kind of functionality as well as to get feedback. I've decided to not publish this on Elm packages yet because it still might be rough around the edges.
+I'm publishing this at the moment in case anyone is interested in this kind of functionality as well as to get feedback. I've decided to not publish this on Elm packages yet because it still might be rough around the edges, but you can use elm-git-install to install it instead.
 
 ---
 
 ## How to use
+
+The modules themselves have been documented but this package currently lacks a broad overview of how to implement it. This will happen in the future once this is improved on more.
 
 Check out [realtime-forms-test](https://github.com/dzuk-mutant/realtime-forms-test) for an example of this code in practice.
 
@@ -34,4 +40,4 @@ Check out [realtime-forms-test](https://github.com/dzuk-mutant/realtime-forms-te
 
 ## License
 
-realtime-forms is licensed BSD-3-Clause
+realtime-forms is licensed BSD-3-Clause.
