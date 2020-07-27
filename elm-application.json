@@ -1,0 +1,13 @@
+{
+    "name": "dzuk/elm-doc-preview",
+    "summary": "Offline documentation previewer",
+    "version": "5.0.0",
+    "exposed-modules": [
+        "Form",
+        "Form.Field",
+        "Form.Updatable",
+        "Form.Validatable",
+        "Form.Validator",
+
+    ]
+}

@@ -2,7 +2,12 @@
 
 ![An gif showing an example field where the user tries to enter a username that doesn't meet different expectations and errors show underneath specifying each error that is made in realtime.](example.gif)
 
-A work-in-progress system for creating form logic where validation is:
+
+This module is designed to not just be a system of validation, but a system of form logic that lies beneath your UI framework. It handles the data structures and validation processes, potential disabling of inputs, as well as the general lifecycle of a form (editing, submitting, etc.). All of these elements are updated in realtime and can be visualised to the user in realtime.
+
+----
+
+The form validation logic in this, unlike other validation systems, is:
 
 - **Contextual** (errors are displayed where they are needed, usually at the input itself)
 - **Granular** (errors tell the user exactly what error they made)
@@ -11,8 +16,6 @@ A work-in-progress system for creating form logic where validation is:
 *\*you can set to trigger realtime validation at different points of a user's interaction so errors don't have to be shown immediately to the user.*
 
 ---
-
-This module only handles the data structures and validation processes, and then you can then insert those things into your own UI stuff.
 
 I've spent quite a long time working on this and refined it quite a lot, but this package should still be considered an early project. It has plenty of flaws in it's current state (like it relies on quite a lot of boilerplate to function).
 

@@ -3,6 +3,11 @@ module Form.Updatable exposing ( enableUpdates
                                , toggleUpdates
                                )
 
+{-|
+
+@docs enableUpdates, disableUpdates, toggleUpdates
+-}
+
 
 {-|
 -}

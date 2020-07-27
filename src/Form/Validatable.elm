@@ -22,7 +22,7 @@ module Form.Validatable exposing ( Validatable
                                  )
 
 {-| The underlying data structure behind Fields and Forms, and how
-to manuipulate and use the validation state of Forms and Fields.
+to manipulate and use the validation state of Forms and Fields.
 
 # Data types
 @docs Validatable, Validity, ErrVisibility, ErrBehavior
@@ -34,9 +34,6 @@ Checking a `Validatable`'s contents and converting them from certain types.
 # Changing error visibility
 Making error messages potentially show or hide.
 @docs possiblyShowErr, possiblyHideErr, possiblyToggleErr, forceShowErr, forceHideErr
-
-# Changing whether the user can update it or not
-@docs enableUpdates, disableUpdates, toggleUpdates
 
 # Validation
 @docs validate
