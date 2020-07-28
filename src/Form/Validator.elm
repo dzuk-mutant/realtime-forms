@@ -22,18 +22,25 @@ module Form.Validator exposing ( Validator
 # Data Types
 @docs Validator, ValidatorSet
 
+---
+
 # Creating Validators
 @docs create
+
+---
 
 # Validation
 @docs hasFailed, hasPassed, evaluateSet
 
-# Validators
+---
+
+# Stock validators
+Validators for various common scenarios that you can use.
 
 ## String validators
 @docs isNotEmpty, hasMaxLength, hasLengthBetween, isValidEmail, hasOnlyAlphanumeric, hasOnlyAlphanumericOrUnderscores
 
-## Other Validators
+## Other type validators
 @docs isNotNothing, isTrue
 
 -}

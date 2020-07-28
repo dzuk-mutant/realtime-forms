@@ -27,13 +27,30 @@ to manipulate and use the validation state of Forms and Fields.
 # Data types
 @docs Validatable, Validity, ErrVisibility, ErrBehavior
 
-# Evaluating contents
+---
+
+# Evaluating validity
 Checking a `Validatable`'s contents and converting them from certain types.
-@docs isValid, isInvalid, ifShowErr, validityToBool, boolToValidity
+@docs isValid, isInvalid, validityToBool, boolToValidity
+
+## Checking if errors should be displayed to the user
+@docs ifShowErr
+
+---
 
 # Changing error visibility
 Making error messages potentially show or hide.
-@docs possiblyShowErr, possiblyHideErr, possiblyToggleErr, forceShowErr, forceHideErr
+
+## Default functions
+In most cases, you should show these, then the Validatable reacts
+according to their `errBehavior`.
+@docs possiblyShowErr, possiblyHideErr, possiblyToggleErr
+
+## Force functions
+With these, you can change error visibility regardless of the Validatable's `errBehavior`.
+@docs forceShowErr, forceHideErr
+
+---
 
 # Validation
 @docs validate
@@ -54,7 +71,7 @@ Validatable is an interface for a record that has a value with validation state 
 - `value` : The value.
 - `validators` : The validators for use against the value.
 - `validity` : The validity of the value.
-- `errMsg` : The current error message related to the value.
+- `errMsg` : The most recent error message related to the value. (See more about this below.)
 - `errVisibility` : Whether or not `errMsg` should be shown to the user.
 - `errBehavior` : When and how to set `errVisibility` based on other factors of the Validatable.
 
@@ -143,29 +160,6 @@ isInvalid v = v.validity == Invalid
 
 
 
-{-| A function for evaluating whether something should show a `Validatable`'s
-`errMsg` or not.
-
-(If a `Validatable` is `Invalid` and `ShowErr`, then this returns `True`.)
-
-This is useful for toggling invalid classes in your HTML.
-```
-Html.select
-    [ classList [ ("invalid", Validatable.ifShowErr realField) ]
-    ]
-    [ --- etc.
-    ]
-```
-
--}
-ifShowErr : Validatable a r -> Bool
-ifShowErr o =
-    o.validity == Invalid
-    && o.errVisibility == ShowErr
-
-
-
-
 {-| Converts a `Validity` to a `Bool`.
 
 This aims for a strict definition of validity, so it
@@ -195,6 +189,29 @@ boolToValidity bool =
     case bool of
         True -> Valid
         False -> Invalid
+
+
+{-| A function for evaluating whether something should show a `Validatable`'s
+`errMsg` or not.
+
+(If a `Validatable` is `Invalid` and `ShowErr`, then this returns `True`.)
+
+This is useful for toggling invalid classes in your HTML.
+```
+Html.select
+    [ classList [ ("invalid", Validatable.ifShowErr realField) ]
+    ]
+    [ --- etc.
+    ]
+```
+-}
+ifShowErr : Validatable a r -> Bool
+ifShowErr o =
+    o.validity == Invalid
+    && o.errVisibility == ShowErr
+
+
+
 
 
 
