@@ -15,6 +15,8 @@ module Form.Validator exposing ( Validator
 
                                , isNotNothing
                                , isTrue
+                               , areSameStrings
+                               , stringsAreNotEmpty
                                )
 
 {-| The foundation for validating Validatables.
@@ -228,9 +230,17 @@ isTrue : String -> Validator Bool
 isTrue errMsg = ( (\v -> v == True), errMsg )
 
 
+{-| A `Validator` that makes sure that in a Tuple of two Strings,
+those Strings are the same as each other.
+-}
+areSameStrings : String -> Validator (String, String)
+areSameStrings errMsg = ( (\v -> Tuple.first v == Tuple.second v), errMsg)
 
-
-
+{-| A `Validator` that makes sure that in a Tuple of two Strings,
+those Strings are not empty.
+-}
+stringsAreNotEmpty : String -> Validator (String, String)
+stringsAreNotEmpty errMsg = ( (\v -> String.length (Tuple.first v) > 0 && String.length (Tuple.second v) > 0 ), errMsg)
 
 
 

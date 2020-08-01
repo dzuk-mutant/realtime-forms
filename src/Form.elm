@@ -20,6 +20,7 @@ module Form exposing ( Form
                      , isUpdatable
                      , isFieldUpdatable
                      , updateField
+                     , updateFieldWithConversion
                      , updateFieldManually
                      , showAnyFieldErr
 
@@ -501,7 +502,30 @@ updateField field form setter onChange =
 
 
 
+{-| updateField, but assumes the value the input gives is different to what is stored in the form.
+Has an additional argument which is a function that converts the input type to the stored form type.
+-}
+updateFieldWithConversion : Field a
+                        -> Form b
+                        -> FieldSetter a b
+                        -> (c -> a)
+                        -> (Form b -> msg)
+                        -> (c -> msg)
+updateFieldWithConversion field form setter conversion onChange =
+    case isFieldUpdatable form field of
+        False -> dontUpdateField form >> onChange
+        True ->
+            -- Field
+            conversion >>
+            Field.replaceValue field form.updatesEnabled >>
+            Validatable.validate >>
+            -- Form values
+            setter form.value >>
+            -- Form
+            replaceValues form >>
+            Validatable.validateAndHideErr >>
 
+            onChange
 
 {-| This updates and validates a field, but you provide the value that it's
 being updated to yourself. This is necessary for things like `onClick` in radio buttons.
@@ -540,7 +564,6 @@ updateFieldManually newValue field form setter onChange =
             |> Validatable.validateAndHideErr
 
             |> onChange
-
 
 
 
