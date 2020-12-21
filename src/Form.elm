@@ -101,7 +101,6 @@ the user is using.
 
 
 import Form.Field as Field exposing (Field)
-import Form.Updatable as Updatable
 import Form.Validatable as Validatable exposing (ErrBehavior(..), ErrVisibility(..), Validity(..), isValid, validate)
 import Form.Validator exposing (ValidatorSet(..))
 
@@ -300,8 +299,8 @@ and erases the last HTTP error message (if any).
 setSaving : Form b -> Form b
 setSaving form =
     form
-    |> (\f -> { form | state = Saving } )
-    |> (\f -> { form | httpErr = "" } )
+    |> \_ -> { form | state = Saving } 
+    |> \_ -> { form | httpErr = "" } 
 
 
 -- TEMP
@@ -310,7 +309,7 @@ setSaving form =
 setDone : Form b -> Form b
 setDone form =
     form
-    |> (\f -> { form | state = Done } )
+    |> \_ -> { form | state = Done }
 
 
 
@@ -454,7 +453,7 @@ event handler and do nothing with it, only returning the already existing
 form with the already existing fields that it contains.
 -}
 dontUpdateField : Form b -> a -> Form b
-dontUpdateField form val = form
+dontUpdateField form _ = form
 
 
 -- event handlers -------------------------------------------------
@@ -660,4 +659,4 @@ submit form changeMsg submitMsg =
 addHttpErr : String -> Form b -> Form b
 addHttpErr httpErrMsg form =
     form
-    |> (\f -> { form | httpErr = httpErrMsg } )
+    |> \_ -> { form | httpErr = httpErrMsg }
