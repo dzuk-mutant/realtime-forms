@@ -19,6 +19,7 @@ module Form exposing ( Form
 
                      , isUpdatable
                      , isFieldUpdatable
+
                      , updateField
                      , updateFieldWithConversion
                      , updateFieldManually
@@ -81,7 +82,7 @@ that do this work need to be attached to the event handlers of the inputs
 the user is using.
 
 
-@docs updateField, updateFieldManually, showAnyFieldErr
+@docs updateField, updateFieldManually, updateFieldWithConversion, showAnyFieldErr
 
 ---
 
@@ -192,7 +193,7 @@ The state of this form has been set to FormSaved (assuming that this has been sa
     initModel =
         { profileForm = Form.prefilled profileValidators profileFieldValidation
                                        { displayName = Field.prefilled displayNameValidators "Dzuk"
-                                       , bio = Field.prefilled bioValidators "Big gay orc."
+                                       , bio = Field.prefilled bioValidators "Big gay fuzzball."
                                        , botAccount = Field.prefilled PassValidation False
                                        , adultAccount = Field.prefilled PassValidation False
                                        }
@@ -224,7 +225,7 @@ prefilled valis fieldValis val =
 {-| Take a `Form`, and replaces it's values with the one given. This does not validate the result.
 
     initialForm = Form.prefilled { displayName = Field.prefilled "Dzuk"
-                                   , bio = Field.prefilled "Big gay orc."
+                                   , bio = Field.prefilled "Big gay fuzzball."
                                    , botAccount = Field.prefilled False
                                    , adultAccount = Field.prefilled False
                                    }

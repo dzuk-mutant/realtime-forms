@@ -7,7 +7,6 @@
         "Form.Field",
         "Form.Updatable",
         "Form.Validatable",
-        "Form.Validator",
-
+        "Form.Validator"
     ]
 }

@@ -1,10 +1,25 @@
 module Form.Validator exposing
-    ( Validator, ValidatorSet(..)
+    ( Validator
+    , ValidatorSet(..)
+    
     , create
-    , hasFailed, hasPassed, evaluateSet
-    , isNotEmpty, hasMaxLength, hasLengthBetween, isValidEmail, hasOnlyAlphanumeric, hasOnlyAlphanumericOrUnderscores
-    , isNotNothing, isTrue
-    , areSameStrings, stringsAreNotEmpty
+
+    , hasFailed
+    , hasPassed
+    , evaluateSet
+
+    , isNotEmpty
+    , hasMaxLength
+    , hasLengthBetween
+    , isValidEmail
+    , hasOnlyAlphanumeric
+    , hasOnlyAlphanumericOrUnderscores
+
+    , isNotNothing
+    , isTrue
+
+    , areSameStrings
+    , stringsAreNotEmpty
     )
 
 {-| The foundation for validating Validatables.
@@ -40,10 +55,18 @@ Validators for various common scenarios that you can use.
 
 @docs isNotEmpty, hasMaxLength, hasLengthBetween, isValidEmail, hasOnlyAlphanumeric, hasOnlyAlphanumericOrUnderscores
 
+## Double string validators
+
+Essentially this is for password entry fields where
+there are two strings in a single Field that need
+to be checked together.
+
+@docs areSameStrings, stringsAreNotEmpty
 
 ## Other type validators
 
 @docs isNotNothing, isTrue
+
 
 -}
 
@@ -67,8 +90,7 @@ type alias Validator a =
 When making a `Validator`, you should pass the `String` as an option so an
 error message can be written in the place in which it gets used.
 
-    containsE =
-        Validator String
+    containsE : Validator String
     containsE errMsg =
         Validator.create (\s -> String.contains "e" s == True) errMsg
 
@@ -235,6 +257,9 @@ hasOnlyAlphanumericOrUnderscores errMsg =
 
     Validator.isNotNothing "You must pick an option."
 
+(Select inputs are a good example of using `Maybe a` for a Field
+ because select inputs may be unset)
+
 -}
 isNotNothing : String -> Validator (Maybe a)
 isNotNothing errMsg =
@@ -265,6 +290,13 @@ those Strings are not empty.
 stringsAreNotEmpty : String -> Validator ( String, String )
 stringsAreNotEmpty errMsg =
     ( \v -> String.length (Tuple.first v) > 0 && String.length (Tuple.second v) > 0, errMsg )
+
+
+
+
+
+
+
 
 
 

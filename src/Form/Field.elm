@@ -102,7 +102,7 @@ A `Field.prefilled` should always be used inside a `Form.prefilled`.
     initModel =
         { profileForm = Form.prefilled profileValidators profileFieldValidation
                                        { displayName = Field.prefilled displayNameValidators "Dzuk"
-                                       , bio = Field.prefilled bioValidators "Big gay orc."
+                                       , bio = Field.prefilled bioValidators "Big gay fuzzball."
                                        , botAccount = Field.prefilled PassValidation False
                                        , adultAccount = Field.prefilled PassValidation False
                                        }
@@ -154,13 +154,14 @@ getValue field = field.value
 
     fieldy = Field.prefilled "Hi"
 
-    getValue fieldy == "Hi"
-    getValue <| replaceValue fieldy "Bye" == "Bye"
+    getValue fieldy -- == "Hi"
+    
+    getValue <| replaceValue fieldy "Bye" -- == "Bye"
 
-    Requires that updates are enabled on both the field
-    itself and the form encapsulating it (represented
-    by the bool input). If updates are disabled on either,
-    then the Field will not update.
+Requires that updates are enabled on both the field
+itself and the form encapsulating it (represented
+by the bool input). If updates are disabled on either,
+then the Field will not update.
 -}
 replaceValue : Field a -> Bool -> a -> Field a
 replaceValue field formUpdatesEnabled val =
