@@ -1,5 +1,12 @@
 # Realtime Forms
 
+[**This package is licensed under NPL v5.**](license.txt)
+
+(It's marked as BSD-3-Clause in elm.json because Elm will not compile packages that don't have OSI licenses, but it is not licenced this way.)
+
+
+----
+
 ![An gif showing an example field where the user tries to enter a username that doesn't meet different expectations and errors show underneath specifying each error that is made in realtime.](example.gif)
 
 
