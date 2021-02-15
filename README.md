@@ -2,7 +2,7 @@
 
 [**This package is licensed under NPL v5.**](license.txt)
 
-(It's marked as BSD-3-Clause in elm.json because Elm will not compile packages that don't have OSI licenses, but it is not licenced this way.)
+(It's marked as BSD-3-Clause in elm.json because Elm will not compile packages that don't have OSI licenses, but it is not licensed this way.)
 
 
 ----
